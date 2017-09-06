@@ -1,0 +1,14 @@
+---
+name: user_mod
+
+templates:
+  pre-start.sh.erb: bin/pre-start
+
+properties:
+  users:
+    description: |
+      Array of user hashes. Each user should specify a `name` attribute.
+    example:
+      users:
+      - name: user1
+        groups: vcap,admin,bosh_sudoers,bosh_sshers

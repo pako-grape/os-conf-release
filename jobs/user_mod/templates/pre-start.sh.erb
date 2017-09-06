@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -ex
+
+<% p('users').each do |user_hash| %>
+  <%  user = user_hash['name']
+      groups = user_hash['groups']
+
+      if user.nil? || user.empty?
+        raise "User must be configured with a 'name' attribute. '#{user_hash}'"
+      end
+
+      if groups.nil? || groups.empty?
+        raise "User: '#{user}' must be configured with groups attribute."
+      end
+      %>
+
+  usermod -G <%=groups%> <%=user%>
+
+<% end %>
